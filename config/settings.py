@@ -38,6 +38,7 @@ DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.humanize',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
@@ -45,7 +46,7 @@ DJANGO_APPS = [
 ]
 
 APPLICATION_APPS = [
-    'pages.apps.PagesConfig',
+    'pages.apps.PagesConfig',   
     'listings.apps.ListingsConfig',
     'doctors.apps.DoctorsConfig',
 ]
