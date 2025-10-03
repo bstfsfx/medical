@@ -1,85 +1,5 @@
 {% extends 'base.html' %} {% block content %} {% load static %}
 
-    <!-- Top Bar -->
-    {% comment %} <section id="top-bar" class="p-3">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <i class="fas fa-phone"></i> (852)-555-5555
-          </div>
-          <div class="col-md-4">
-            <i class="fas fa-envelope-open"></i> contact@healthcare.co
-          </div>
-          <div class="col-md-4">
-            <div class="social text-right">
-              <a href="#">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#">
-                <i class="fab fa-facebook"></i>
-              </a>
-              <a href="#">
-                <i class="fab fa-linkedin"></i>
-              </a>
-              <a href="#">
-                <i class="fab fa-instagram"></i>
-              </a>
-              <a href="#">
-                <i class="fab fa-pinterest"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> {% endcomment %}
-
-    <!-- Navbar -->
-    {% comment %} <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
-      <div class="container">
-        <a class="navbar-brand" href="index.html">
-          <img src="assets/img/logo.png" class="logo" alt="" />
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNavAltMarkup"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <ul class="navbar-nav">
-            <li class="nav-item active mr-3">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item mr-3">
-              <a class="nav-link" href="about.html">About</a>
-            </li>
-            <li class="nav-item mr-3">
-              <a class="nav-link" href="listings.html"
-                >Inpatient medical services</a
-              >
-            </li>
-          </ul>
-
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item mr-3">
-              <a class="nav-link" href="register.html">
-                <i class="fas fa-user-plus"></i> Register</a
-              >
-            </li>
-            <li class="nav-item mr-3">
-              <a class="nav-link" href="login.html">
-                <i class="fas fa-sign-in-alt"></i>
-
-                Login</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav> {% endcomment %}
-
     <section id="showcase-inner" class="py-5 text-white">
       <div class="container">
         <div class="row text-center">
@@ -131,21 +51,24 @@
             </p>
           </div>
           <div class="col-md-4">
+            {% if mvp_doctors %}
+            {% for doctor in mvp_doctors %}
             <div class="card">
               <img
                 class="card-img-top"
-                src="assets/img/doctors/kyle.jpg"
-                alt="Seller of the month"
+                src={{doctor.photo.url}}
+                alt="Doctor of the month"
               />
               <div class="card-body">
                 <h5 class="card-title">Top Doctor</h5>
-                <h6 class="text-secondary">Kyle chan</h6>
+                <h6 class="text-secondary">{{doctor.name}}</h6>
                 <p class="card-text">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis
-                  nesciunt amet, illo itaque similique repellat. content.
+                  {{doctor.description}}
                 </p>
               </div>
             </div>
+            {% endfor %}
+            {% endif %}
           </div>
         </div>
       </div>
@@ -160,7 +83,7 @@
       </h4>
       <hr />
       {% comment %} fix listings.html {% endcomment %}
-      <a href="listings.html" class="btn btn-secondary text-white btn-lg"
+      <a href={% url 'listings:listings' %} class="btn btn-secondary text-white btn-lg"
         >View Our Featured Listings</a
       >
     </section>
@@ -170,60 +93,33 @@
       <div class="container">
         <h2 class="text-center pb-4">Our Team</h2>
         <div class="row text-center">
+          {% if doctors %}
+          {% for doctor in doctors %}
           <div class="col-md-4">
             {% comment %} fix kyle.jpg {% endcomment %}
             <img
-              src="assets/img/doctors/kyle.jpg"
+              src={{doctor.photo.url}}
               alt=""
               class="rounded-circle mb-3 img-fluid"
               style="object-fit: cover; width: 300px; height: 300px"
             />
-            <h4>Kyle Chan</h4>
+            <h4>{{doctor.name}}</h4>
             <p class="text-success">
               <i class="fas fa-award text-success"></i> Doctor
             </p>
             <hr />
-            <p><i class="fas fa-phone"></i> (852)-555-5555</p>
-            <p><i class="fas fa-envelope-open"></i> kyle@healthcare.co</p>
+            <p><i class="fas fa-phone"></i> {{doctor.phone}}</p>
+            <p><i class="fas fa-envelope-open"></i> {{doctor.email}}</p>
           </div>
+          {% endfor %}
+          {% else %}
+          <div class="col-md-12">
+            <h2>No Doctor Available - We are hiring ! </h2>
+          </div>
+          {% endif %}
 
-          <div class="col-md-4">
-            {% comment %} fix emma.jpg {% endcomment %}
-            <img
-              src="assets/img/doctors/emma.jpg"
-              alt=""
-              class="rounded-circle mb-3 img-fluid"
-              style="object-fit: cover; width: 300px; height: 300px"
-            />
-            <h4>Emma Lee</h4>
-            <p class="text-success">Doctor</p>
-            <hr />
-            <p><i class="fas fa-phone"></i> (852)-444-4444</p>
-            <p><i class="fas fa-envelope-open"></i> emma@healthcare.co</p>
-          </div>
-
-          <div class="col-md-4">
-            {% comment %} fix jenny.jpg {% endcomment %}
-            <img
-              src="assets/img/doctors/jenny.jpg"
-              alt=""
-              class="rounded-circle mb-3 img-fluid"
-              style="object-fit: cover; width: 300px; height: 300px"
-            />
-            <h4>Jenny Cheung</h4>
-            <p class="text-success">Doctor</p>
-            <hr />
-            <p><i class="fas fa-phone"></i> (852)-333-3333</p>
-            <p><i class="fas fa-envelope-open"></i> jenny@healthcare.co</p>
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- Footer -->
-    {% comment %} <footer id="main-footer" class="py-4 bg-primary text-white text-center">
-      Copyright &copy;
-      <span class="year"></span> BC Health Care
-    </footer> {% endcomment %}
-    
 {% endblock %}
