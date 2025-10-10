@@ -16,7 +16,7 @@
             </p>
             <div class="search">
                 {% comment %} fix search.html {% endcomment %}
-              <form action="search.html">
+              <form action='{% url "listings:search" %}'>
                 <!-- Form Row 1 -->
                 <div class="form-row">
                   <div class="col-md-12 mb-3">
@@ -43,19 +43,19 @@
                     </select>
                   </div>
                   <div class="col-md-4 mb-3">
-                    <label class="sr-only">Bedrooms</label>
-                    <select name="nights" class="form-control">
-                      <option selected="true" values="">
-                        Night (All)
+                    <label class="sr-only">Rooms</label>
+                    <select name="rooms" class="form-control">
+                      <option selected="true" disable="disable">
+                        Rooms (All) 
                       </option>
-                      {% for key,value in night_choices.items %}
+                      {% for key,value in rooms_choices.items %}
                       <option value="{{key}}">{{value}}</option>
                       {% endfor %}
                     </select>
                   </div>
                   <div class="col-md-4 mb-3">
                     <select name="room_type" class="form-control" id="type">
-                      <option selected="true" values="">
+                      <option selected="true" disable="disable">
                         Room types (All)
                       </option>
                       {% for key,value in room_choices.items %}
