@@ -1,8 +1,9 @@
 {% extends 'base.html' %} 
 <!--load humanize-->
-{% load humanize %} {% block content %} 
-
-
+{% load humanize %}
+<!-- block content -->
+ {% block title %} | Welcome {% endblock title %}
+{% block content %} 
     <!-- Showcase -->
     <section id="showcase">
       <div class="container text-center">
@@ -73,7 +74,6 @@
         </div>
       </div>
     </section>
-
     <!-- Listings -->
     <section id="listings" class="py-5">
       <div class="container">
@@ -143,7 +143,6 @@
         </div>
       </div>
     </section>
-
     <section id="services" class="py-5 bg-secondary text-white">
       <div class="container">
         <div class="row text-center">
@@ -180,5 +179,4 @@
         </div>
       </div>
     </section>
-
 {% endblock %}

@@ -36,7 +36,6 @@
               >
             </li>
           </ul>
-
           <ul class="navbar-nav ml-auto">
             {% if user.is_authenticated %}
             <li {% if 'dashboard' in request.path %} class="nav-item mr-3 active" {% else %} class="nav-item mr-3" {% endif %} >
@@ -64,7 +63,6 @@
                 {% comment %} fix login.html {% endcomment %}
               <a class="nav-link" href={% url 'accounts:login' %}>
                 <i class="fas fa-sign-in-alt"></i>
-
                 Login</a
               >
             </li>

@@ -40,10 +40,5 @@ def search(request):
     paginator=Paginator(queryset_list,3)
     page=request.GET.get('page')
     paged_listings=paginator.get_page(page)
-    context = {'listings': paged_listings,
-               'district_choices': district_choices,
-               'rooms_choices': rooms_choices,
-               'room_choices': room_choices,
-               'values': request.GET
-               }
+    context = {'listings': paged_listings,'district_choices': district_choices,'rooms_choices': rooms_choices,'room_choices': room_choices,'values': request.GET}
     return render(request, 'listings/search.html', context)
